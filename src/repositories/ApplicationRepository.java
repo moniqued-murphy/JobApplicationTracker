@@ -10,8 +10,11 @@
 *
 * Version: 2026-04-29
 */
+package repositories;
 
 import java.util.ArrayList;
+
+import models.ApplicationModel;
 
 /**
  * Purpose: The responsibility of ApplicationRepository is ...
@@ -37,7 +40,7 @@ public class ApplicationRepository
 	}
 	
 	/**
-	 * Method: getApplications
+	 * Method: addApplications
 	 * Purpose: Retrieve the collection of applications from the repository
 	 * 
 	 * @return an ArrayList of ApplicationModel objects representing the applications in the repository

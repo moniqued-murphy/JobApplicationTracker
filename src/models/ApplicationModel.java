@@ -9,6 +9,7 @@
 *
 * Version: 2026-04-29
 */
+package models;
 
 /**
  * Purpose: The responsibility of ApplicationModel is ...
@@ -50,11 +51,11 @@ public class ApplicationModel
 	    this.companyName = companyName;
 	    this.jobTitle = jobTitle;
 	    this.location = location;
-	    this.pay = pay;
-	    this.dateApplied = dateApplied;
-	    this.status = status;
+	    this.pay = pay; //00.00
+	    this.dateApplied = dateApplied; // 00/00/00
+	    this.status = status; // applied, interview, rejected
 	    this.notes = notes;
-	    this.applicationType = applicationType;
+	    this.applicationType = applicationType; // internship, job
 	}
 	
 	public String getCompanyName()
