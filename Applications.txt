@@ -1,0 +1,4 @@
+google |intern|san diego |2345.56|12/21/12|Applied|text application |Job: Full-Time
+Mesa College |Intern|San Diego |23.34|05/13/26|Applied|This is a test application #2|Internship: Part-Time
+everbowl |Cashier|LA|23.34|09/09/26|Interview|This is a test application #3|Job: Full-Time
+test|test|test|76.4444|55/44/33|Interview|test #4|Job: Full-Time

@@ -101,7 +101,7 @@ public class ApplicationRepository
 
 		    if (application.getCompanyName().contains(keyWord) ||
 		        application.getJobTitle().contains(keyWord) ||
-		        application.getLocation().contains(keyWord) ||
+		        application.getJobLocation().contains(keyWord) ||
 		        application.getStatus().contains(keyWord) ||
 		        application.getApplicationType().contains(keyWord))
 		    {

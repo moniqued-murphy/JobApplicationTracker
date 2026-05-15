@@ -63,7 +63,7 @@ public class FileService
 				writer.write(
 						application.getCompanyName() + "|" +
 						application.getJobTitle() + "|" +
-						application.getLocation() + "|" +
+						application.getJobLocation() + "|" + 
 						application.getPay() + "|" +
 						application.getDateApplied() + "|" +
 						application.getStatus() + "|" +

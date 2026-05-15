@@ -24,7 +24,7 @@ public class ApplicationModel
 {
 	private String companyName;
 	private String jobTitle;
-	private String location; // City / State
+	private String jobLocation; // City / State
 	private double pay;
 	private String dateApplied; // 00/00/00
 	private String status; // 
@@ -50,7 +50,7 @@ public class ApplicationModel
 	{
 	    this.companyName = companyName;
 	    this.jobTitle = jobTitle;
-	    this.location = location;
+	    this.jobLocation = location;
 	    this.pay = pay; //00.00
 	    this.dateApplied = dateApplied; // 00/00/00
 	    this.status = status; // applied, interview, rejected
@@ -68,9 +68,9 @@ public class ApplicationModel
 		return jobTitle;
 	}
 	
-	public String getLocation()
+	public String getJobLocation()
 	{
-		return location;
+		return jobLocation;
 	}
 	
 	public double getPay()
@@ -96,5 +96,23 @@ public class ApplicationModel
 	public String getApplicationType()
 	{
 		return applicationType;
+	}
+	
+	/**
+	 * Method: To String
+	 * Purpose: Return a string representation of the application object
+	 * 
+	 * @return a string representation of the application object
+	 */
+	@Override
+	public String toString()
+	{
+		return "Company: " + companyName + 
+				", Job Title: " + jobTitle +
+				", Location: " + jobLocation +
+				". Pay: " + pay +
+				", Date Applied: " + dateApplied +
+				", Status: " + status +
+				", Type: " + applicationType;
 	}
 }
