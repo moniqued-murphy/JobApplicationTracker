@@ -16,6 +16,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -145,6 +147,29 @@ public class ApplicationsView extends JFrame
 				new Dimension(300, 38));
 
 		searchField.setForeground(Color.GRAY);
+
+		searchField.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				if (searchField.getText().equals("Search applications..."))
+				{
+					searchField.setText("");
+					searchField.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				if (searchField.getText().trim().isEmpty())
+				{
+					searchField.setText("Search applications...");
+					searchField.setForeground(Color.GRAY);
+				}
+			}
+		});
 
 		searchField.setBackground(Color.WHITE);
 
@@ -456,7 +481,8 @@ public class ApplicationsView extends JFrame
 
 	public String getSearchText()
 	{
-		return searchField.getText();
+		String text = searchField.getText();
+		return text.equals("Search applications...") ? "" : text;
 	}
 
 	// Button Styling Method
@@ -511,7 +537,7 @@ public class ApplicationsView extends JFrame
 							app.getCompanyName(),
 							app.getJobTitle(),
 							app.getJobLocation(),
-							app.getPay(),
+							String.format("$%.2f", app.getPay()),
 							app.getDateApplied(),
 							app.getStatus(),
 							app.getApplicationType()

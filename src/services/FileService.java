@@ -76,7 +76,7 @@ public class FileService
 		}
 		catch (IOException e)
 		{
-			System.out.println("Error saving your application to file.");
+			throw new RuntimeException("Could not save your application.");
 		}
 	}
 	

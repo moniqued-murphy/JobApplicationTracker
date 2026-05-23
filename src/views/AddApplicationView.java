@@ -1,6 +1,5 @@
 /**
- * Lead Author(s):
- * 
+ * Lead Author(s): 
  * @author Monique Murphy; 0005396987
  * 
  * References:
@@ -36,6 +35,10 @@ import repositories.ApplicationRepository;
 import services.FileService;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Purpose: The responsibility of AddApplicationView is ...
@@ -55,6 +58,9 @@ public class AddApplicationView extends JFrame
 	private JComboBox<String> jobTypeBox;
 
 	private JTextArea notesArea;
+
+	private JLabel payErrorLabel;
+	private JLabel dateErrorLabel;
 
 	private JButton saveButton;
 	private JButton cancelButton;
@@ -92,9 +98,93 @@ public class AddApplicationView extends JFrame
 
 		payField = new JTextField();
 		styleField(payField);
+		payField.setText("e.g. 5000.00");
+		payField.setForeground(Color.GRAY);
+		payField.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				if (payField.getText().equals("e.g. 5000.00"))
+				{
+					payField.setText("");
+					payField.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				if (payField.getText().trim().isEmpty())
+				{
+					payField.setText("e.g. 5000.00");
+					payField.setForeground(Color.GRAY);
+				}
+			}
+		});
+
+		payField.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if (payField.getText().equals("e.g. 5000.00"))
+				{
+					payField.setText("");
+					payField.setForeground(Color.BLACK);
+				}
+			}
+		});
 
 		dateField = new JTextField();
 		styleField(dateField);
+		dateField.setText("MM/DD/YY");
+		dateField.setForeground(Color.GRAY);
+		dateField.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				if (dateField.getText().equals("MM/DD/YY"))
+				{
+					dateField.setText("");
+					dateField.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				if (dateField.getText().trim().isEmpty())
+				{
+					dateField.setText("MM/DD/YY");
+					dateField.setForeground(Color.GRAY);
+				}
+			}
+		});
+
+		dateField.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if (dateField.getText().equals("MM/DD/YY"))
+				{
+					dateField.setText("");
+					dateField.setForeground(Color.BLACK);
+				}
+			}
+		});
+
+		payErrorLabel = new JLabel(" ");
+		payErrorLabel.setForeground(Color.RED);
+		payErrorLabel.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		payErrorLabel.setAlignmentX(LEFT_ALIGNMENT);
+
+		dateErrorLabel = new JLabel(" ");
+		dateErrorLabel.setForeground(Color.RED);
+		dateErrorLabel.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		dateErrorLabel.setAlignmentX(LEFT_ALIGNMENT);
 
 		statusBox = new JComboBox<String>();
 		statusBox.setFont(new Font("SansSerif", Font.PLAIN, 16));
@@ -172,7 +262,8 @@ public class AddApplicationView extends JFrame
 		leftPanel.add(dateLabel);
 		leftPanel.add(Box.createVerticalStrut(8));
 		leftPanel.add(dateField);
-		leftPanel.add(Box.createVerticalStrut(24));
+		leftPanel.add(dateErrorLabel);
+		leftPanel.add(Box.createVerticalStrut(10));
 
 		JLabel jobTypeLabel = new JLabel("Job Type");
 		jobTypeLabel.setFont(labelFont);
@@ -201,7 +292,8 @@ public class AddApplicationView extends JFrame
 		rightPanel.add(payLabel);
 		rightPanel.add(Box.createVerticalStrut(8));
 		rightPanel.add(payField);
-		rightPanel.add(Box.createVerticalStrut(24));
+		rightPanel.add(payErrorLabel);
+		rightPanel.add(Box.createVerticalStrut(10));
 
 		JLabel statusLabel = new JLabel("Status");
 		statusLabel.setFont(labelFont);
@@ -331,7 +423,8 @@ public class AddApplicationView extends JFrame
 	 */
 	public String getPay()
 	{
-		return payField.getText();
+		String text = payField.getText();
+		return text.equals("e.g. 5000.00") ? "" : text;
 	}
 	
 	/**
@@ -342,7 +435,8 @@ public class AddApplicationView extends JFrame
 	 */
 	public String getDateApplied()
 	{
-		return dateField.getText();
+		String text = dateField.getText();
+		return text.equals("MM/DD/YY") ? "" : text;
 	}
 	
 	/**
@@ -400,6 +494,61 @@ public class AddApplicationView extends JFrame
 		return cancelButton;
 	}
 	
+	public void populate(ApplicationModel application)
+	{
+		companyNameField.setText(application.getCompanyName());
+		jobTitleField.setText(application.getJobTitle());
+		jobLocationField.setText(application.getJobLocation());
+		payField.setText(String.valueOf(application.getPay()));
+		payField.setForeground(Color.BLACK);
+		dateField.setText(application.getDateApplied());
+		dateField.setForeground(Color.BLACK);	
+		statusBox.setSelectedItem(application.getStatus());
+		jobTypeBox.setSelectedItem(application.getApplicationType());
+		notesArea.setText(application.getNotes());
+	}
+	/**
+	 * Method: Show Pay Error
+	 * Purpose: Display an error message related to the pay field
+	 * 
+	 * @param message the error message to be displayed
+	 * @return void
+	 */
+	public void showPayError(String message)
+	{
+		payErrorLabel.setText(message);
+	}
+	/**
+	 * Method: Hide Pay Error
+	 * Purpose: Clear the error message related to the pay field
+	 * 
+	 * @return void
+	 */
+	public void hidePayError()
+	{
+		payErrorLabel.setText(" ");
+	}
+	/**
+	 * Method: Show Date Error
+	 * Purpose: Display an error message related to the date field
+	 * 
+	 * @param message the error message to be displayed
+	 * @return void
+	 */
+	public void showDateError(String message)
+	{
+		dateErrorLabel.setText(message);
+	}
+	/**
+	 * Method: Hide Date Error
+	 * Purpose: Clear the error message related to the date field
+	 * 
+	 * @return void
+	 */
+	public void hideDateError()
+	{
+		dateErrorLabel.setText(" ");
+	}
 	/**
 	 * Method: Clear Form 
 	 * Purpose: Clear all the fields in the form
@@ -411,10 +560,14 @@ public class AddApplicationView extends JFrame
 		companyNameField.setText("");
 		jobTitleField.setText("");
 		jobLocationField.setText("");
-		payField.setText("");
-		dateField.setText("");
+		payField.setText("e.g. 5000.00");
+		payField.setForeground(Color.GRAY);
+		dateField.setText("MM/DD/YY");
+		dateField.setForeground(Color.GRAY);
 		statusBox.setSelectedIndex(0);
 		jobTypeBox.setSelectedIndex(0);
 		notesArea.setText("");
+		hidePayError();
+		hideDateError();
 	}
 }

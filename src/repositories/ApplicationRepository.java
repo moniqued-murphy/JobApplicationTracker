@@ -99,11 +99,11 @@ public class ApplicationRepository
 		{
 		    ApplicationModel application = applications.get(i);
 
-		    if (application.getCompanyName().contains(keyWord) ||
-		        application.getJobTitle().contains(keyWord) ||
-		        application.getJobLocation().contains(keyWord) ||
-		        application.getStatus().contains(keyWord) ||
-		        application.getApplicationType().contains(keyWord))
+		    if (application.getCompanyName().toLowerCase().contains(keyWord.toLowerCase()) ||
+		        application.getJobTitle().toLowerCase().contains(keyWord.toLowerCase()) ||
+		        application.getJobLocation().toLowerCase().contains(keyWord.toLowerCase()) ||
+		        application.getStatus().toLowerCase().contains(keyWord.toLowerCase()) ||
+		        application.getApplicationType().toLowerCase().contains(keyWord.toLowerCase()))
 		    {
 		        searchResults.add(application);
 		    }
