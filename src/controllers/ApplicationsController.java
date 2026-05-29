@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 * 
 *
-* Version: 2026-05-13
+* Version: 2026-05-28
 */
 package controllers;
 
@@ -27,8 +27,6 @@ import models.ApplicationModel;
  * Purpose: The responsibility of ApplicationsController is ...
  * To manage the flow of data between the ApplicationsView and the ApplicationRepository
  *
- * ApplicationsController is-a ...
- * ApplicationsController is ...
  */
 public class ApplicationsController
 {
@@ -49,14 +47,12 @@ public class ApplicationsController
 		this.view = view;
 		this.repo = repo;
 		
-		repo.getApplications().addAll(fileService.loadApplications());
-		
 		view.displayApplications(repo.getApplications());
-		
+
+		// Add button: open the add application form
 		view.getAddButton().addActionListener(e ->
 		{
-			AddApplicationView addView =
-					new AddApplicationView();
+			AddApplicationView addView = new AddApplicationView();
 
 			addView.getSaveButton().addActionListener(saveEvent ->
 			{
@@ -69,6 +65,7 @@ public class ApplicationsController
 				boolean valid = true;
 				double pay = 0;
 
+				// Validate the pay input
 				try
 				{
 					pay = Double.parseDouble(payText);
@@ -79,12 +76,13 @@ public class ApplicationsController
 					valid = false;
 				}
 
+				// Validate the date input using a regular expression to check for MM/DD/YY format
 				if (!dateText.matches("\\d{2}/\\d{2}/\\d{2}"))
 				{
 					addView.showDateError("Please use MM/DD/YY format (e.g. 05/21/26).");
 					valid = false;
 				}
-
+				// If either input is invalid, do not proceed with saving the new application
 				if (!valid)
 				{
 					return;
@@ -104,6 +102,7 @@ public class ApplicationsController
 
 				repo.addApplication(application);
 
+				// Validate that the application was added successfully before saving
 				try
 				{
 					fileService.saveApplications(repo.getApplications());
@@ -118,11 +117,13 @@ public class ApplicationsController
 					return;
 				}
 
+				// Refresh the applications table
 				view.displayApplications(repo.getApplications());
 				addView.clearForm();
 			});
 		});
-		
+
+		// Search button: search for applications that match the search text and display the results
 		view.getSearchButton().addActionListener(e ->
 		{
 			String searchText = view.getSearchText();
@@ -140,6 +141,7 @@ public class ApplicationsController
 			view.displayApplications(results);
 		});
 		
+		// Filter box: filter applications based on the selected filter and display the results
 		view.getFilterBox().addActionListener(e ->
 		{
 			String selectedFilter = (String)view.getFilterBox().getSelectedItem();
@@ -153,8 +155,7 @@ public class ApplicationsController
 			
 			// Filter applications based on the selected filter and display the results
 			ArrayList<ApplicationModel> filtered = new ArrayList<>();
-			// Loop through all applications and add those that match the selected filter 
-			// to the filtered list
+			// Loop through all applications and add those that match the selected filter to the filtered list
 			for (int i = 0; i < repo.getApplications().size(); i++)
 			{
 				ApplicationModel application = repo.getApplications().get(i);
@@ -167,6 +168,7 @@ public class ApplicationsController
 			view.displayApplications(filtered);
 		});
 		
+		// Delete button: delete the selected application from the repository and update the view
 		view.getDeleteButton().addActionListener(e ->
 		{
 			int selectedIndex = view.getSelectedApplicationIndex();
@@ -181,20 +183,21 @@ public class ApplicationsController
 				return;
 			}
 			
-			// get application thats selected
+			// Get application thats selected
 			ApplicationModel selected = repo.getApplications().get(selectedIndex);
-			// delete application from repository
+			// Delete application from repository
 			repo.deleteApplication(selected);
-			// save updated repository to file
+			// Save updated repository to file
 			fileService.saveApplications(repo.getApplications());
-			// update view with new repository data
+			// Update view with new repository data
 			view.displayApplications(repo.getApplications());
 		});
 
+		// Edit button: open the edit application form for the selected application
 		view.getEditButton().addActionListener(e ->
 		{
 			int selectedIndex = view.getSelectedApplicationIndex();
-
+			// Check if an application had been selected
 			if (selectedIndex == -1)
 			{
 				JOptionPane.showMessageDialog(view,
@@ -204,14 +207,14 @@ public class ApplicationsController
 				return;
 			}
 
-			// get application thats selected
+			// Get application thats selected
 			ApplicationModel oldApplication = repo.getApplications().get(selectedIndex);
-			// create a new edit view
+			// Create a new edit view
 			AddApplicationView editView = new AddApplicationView();
-			// populate the edit view with the data from the selected application
+			// Populate the edit view with the data from the selected application
 			editView.populate(oldApplication);
 
-			// add action listener to the save button in the edit view
+			// Add action listener to the save button in the edit view
 			editView.getSaveButton().addActionListener(saveEvent ->
 			{
 				// Hide any previous error messages
@@ -285,13 +288,13 @@ public class ApplicationsController
 			});
 		});
 
-		// Double-click on a row in the table to open the edit view
+		// Double click on a row in the table to open the edit view
 		view.getApplicationsTable().addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				// Check if the user double-clicked
+				// Check if the user double clicked
 				if (e.getClickCount() == 2)
 				{
 					int selectedIndex = view.getSelectedApplicationIndex();
@@ -362,7 +365,7 @@ public class ApplicationsController
 						repo.editApplication(oldApplication, updatedApplication);
 
 						// Save the updated repository to the file
-						// and handle any potential errors that may occur during the save process
+						// and handle errors that may occur during the save process
 						try
 						{
 							fileService.saveApplications(repo.getApplications());

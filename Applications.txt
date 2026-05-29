@@ -1,6 +1,4 @@
-google |intern|san diego |2345.56|12/21/12|Applied|text application |Job: Full-Time
-Mesa College |Intern|San Diego |23.34|05/13/26|Applied|This is a test application #2|Internship: Part-Time
-everbowl |Cashier|LA|23.34|09/09/26|Interview|This is a test application #3|Job: Full-Time
-test|test|test|76.4444|55/44/33|Interview|test #4|Job: Full-Time
-Test 3|Test|San Diego|12.12|09/09/09|Interview|This is a test application testing the edit |Job: Part-Time
-test |sdf|sdf|12.12|12/12/12|Rejected|test application |Internship: Part-Time
+Google |Google Search |San Diego |12.12|12/23/23|Applied|Test application #1|Job: Full-Time
+Baskin Robbins |Ice Cream Trester|Remote |2000.0|05/24/23|Offer|Test Application #2  Baskin Robbins has 31 flavors of ice cream |Internship: Full-Time
+Papa Johns|Pizza Spinner |La Jolla |100000.0|02/21/28|Rejected|Application Test #3     Guess i cant spin the pizza |Internship: Full-Time
+Apple|Iphone |LA|0.0|11/11/23|Interview|Test application #4|Internship: Part-Time

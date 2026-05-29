@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
 *
-* Version: 2026-04-29
+* Version: 2026-05-28
 */
 
 package services;
@@ -23,8 +23,6 @@ import models.ApplicationModel;
  * Purpose: The responsibility of FileService is ...
  * Save and load application data to and from a text file
  *
- * FileService is-a ...
- * FileService is ...
  */
 public class FileService
 {
@@ -59,19 +57,22 @@ public class FileService
 			{
 				ApplicationModel application = appList.get(i);
 				
-				// write each part of the application 
+				// Replace any newlines in notes so they don't break the line format
+				String safeNotes = application.getNotes().replace("\n", " ").replace("\r", " ");
+
+				// write each part of the application
 				writer.write(
 						application.getCompanyName() + "|" +
 						application.getJobTitle() + "|" +
-						application.getJobLocation() + "|" + 
+						application.getJobLocation() + "|" +
 						application.getPay() + "|" +
 						application.getDateApplied() + "|" +
 						application.getStatus() + "|" +
-						application.getNotes() + "|" +
+						safeNotes + "|" +
 						application.getApplicationType() + "\n"
 						);
 			}
-			
+			// Close the writer to save the file
 			writer.close();
 		}
 		catch (IOException e)
@@ -91,6 +92,7 @@ public class FileService
 	{
 		ArrayList<ApplicationModel> applications = new ArrayList<>();
 		
+		// Read the file and create ApplicationModel objects for each line in the file
 		try
 		{
 			FileReader reader = new FileReader(fileName);
@@ -101,7 +103,7 @@ public class FileService
 			{
 				String line = scanner.nextLine();
 				
-				// Split the line using commas
+				// Split the line using the character "|"
 				String[] data = line.split("\\|");
 				
 				// new ApplicationMdel object

@@ -7,29 +7,26 @@
 * Java, Java, Java: Object-Oriented Problem Solving
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
-* Version: 2026-04-29
+* Version: 2026-05-28
 */
 package models;
 
 /**
  * Purpose: The responsibility of ApplicationModel is ...
- * Store one job or internship application, including relevant information:
+ * Store one application, including relevant information:
  * companyName, jobTitle, location, pay, dateApplied, status, notes, applicationType
  * 
- *
- * ApplicationModel is-a ...
- * ApplicationModel is ...
  */
 public class ApplicationModel
 {
 	private String companyName;
 	private String jobTitle;
-	private String jobLocation; // City / State
-	private double pay;
+	private String jobLocation; 
+	private double pay; // 00.00
 	private String dateApplied; // 00/00/00
-	private String status; // 
+	private String status; // applied, interview, rejected
 	private String notes;
-	private String applicationType; // Job / internship
+	private String applicationType; // Job-Full Time, Job-Part Time, Internship-Full Time, Internship-Part Time
 	
 	/**
 	 * Constructor for ApplicationModel
@@ -51,13 +48,14 @@ public class ApplicationModel
 	    this.companyName = companyName;
 	    this.jobTitle = jobTitle;
 	    this.jobLocation = location;
-	    this.pay = pay; //00.00
-	    this.dateApplied = dateApplied; // 00/00/00
-	    this.status = status; // applied, interview, rejected
+	    this.pay = pay; 
+	    this.dateApplied = dateApplied; 
+	    this.status = status; 
 	    this.notes = notes;
-	    this.applicationType = applicationType; // internship, job
+	    this.applicationType = applicationType; 
 	}
 	
+	// Getters for all fields
 	public String getCompanyName()
 	{
 		return companyName;

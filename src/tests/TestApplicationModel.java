@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
 *
-* Version: 2026-05-04
+* Version: 2026-05-28
 */
 package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,9 +18,7 @@ import repositories.ApplicationRepository;
 
 /**
  * Purpose: The responsibility of TestApplicationModel is ...
- *
- * TestApplicationModel is-a ...
- * TestApplicationModel is ...
+ * To test the functionality of the ApplicationModel class and its interaction with the ApplicationRepository.
  */
 public class TestApplicationModel
  {

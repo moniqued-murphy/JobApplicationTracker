@@ -7,7 +7,7 @@
  * Java, Java, Java: Object-Oriented Problem Solving
  * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  *
- * Version: 2026-05-13
+ * Version: 2026-05-28
  */
 package views;
 
@@ -40,11 +40,9 @@ import models.ApplicationModel;
 
 /**
  * Purpose: The responsibility of ApplicationsView is
- * to display all saved applications in a table
- * and provide buttons for add, edit, delete,
- * filter, and search.
+ * To display all saved applications in a table
+ * and provide buttons for add, edit, delete, filter, and search
  *
- * ApplicationsView is-a JFrame
  */
 public class ApplicationsView extends JFrame
 {
@@ -59,13 +57,9 @@ public class ApplicationsView extends JFrame
 	private JComboBox<String> filterBox;
 	private JTextField searchField;
 
-	private JButton previousButton;
-	private JButton nextButton;
-	private JLabel pageLabel;
-
 	public ApplicationsView()
 	{
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Applications");
 		this.setLayout(new BorderLayout());
 
@@ -221,6 +215,7 @@ public class ApplicationsView extends JFrame
 		applicationsTable.getTableHeader()
 				.setReorderingAllowed(false);
 
+		// Set all columns to not resizable
 		for (int i = 0;
 				i < applicationsTable.getColumnModel().getColumnCount();
 				i++)
@@ -393,27 +388,10 @@ public class ApplicationsView extends JFrame
 
 		bottomPanel.setBackground(backgroundColor);
 
-		previousButton = makeButton(
-				"Previous",
-				new Color(235, 232, 250));
-
-		nextButton = makeButton(
-				"Next",
-				new Color(235, 232, 250));
-
-		pageLabel = new JLabel("Page 1 of 1");
-
-		pageLabel.setFont(
-				new Font("SansSerif", Font.PLAIN, 15));
-
-		bottomPanel.add(previousButton);
-		bottomPanel.add(pageLabel);
-		bottomPanel.add(nextButton);
-
 		add(bottomPanel, BorderLayout.SOUTH);
 
-		this.setSize(1200, 760);
-		this.setLocationRelativeTo(null);
+		this.setSize(1200, 760); 
+		this.setLocationRelativeTo(null); 
 		this.setVisible(true);
 	}
 
@@ -459,21 +437,6 @@ public class ApplicationsView extends JFrame
 		return searchField;
 	}
 
-	public JButton getPreviousButton()
-	{
-		return previousButton;
-	}
-
-	public JButton getNextButton()
-	{
-		return nextButton;
-	}
-
-	public JLabel getPageLabel()
-	{
-		return pageLabel;
-	}
-
 	public int getSelectedApplicationIndex()
 	{
 		return applicationsTable.getSelectedRow();
@@ -485,8 +448,14 @@ public class ApplicationsView extends JFrame
 		return text.equals("Search applications...") ? "" : text;
 	}
 
-	// Button Styling Method
-
+	/**
+	 * Method: Make Button
+	 * Purpose: Create JButton with the given label and background color
+	 * 
+	 * @param label the text to display on the button
+	 * @param bg the background color of the button
+	 * @return a JButton
+	 */
 	private JButton makeButton(String label, Color bg)
 	{
 		JButton btn = new JButton(label);

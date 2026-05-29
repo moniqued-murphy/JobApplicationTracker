@@ -1,4 +1,7 @@
-/tests/
+/Main.class
+/controllers/
 /models/
 /repositories/
 /services/
+/tests/
+/views/

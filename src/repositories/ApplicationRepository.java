@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
 *
-* Version: 2026-04-29
+* Version: 2026-05-28
 */
 package repositories;
 
@@ -18,11 +18,9 @@ import models.ApplicationModel;
 
 /**
  * Purpose: The responsibility of ApplicationRepository is ...
- * Store a collection of job and internship applications, 
+ * Store a collection of applications,
  * and provide methods to add, delete, and retrieve applications
  * 
- * ApplicationRepository is-a ...
- * ApplicationRepository is ...
  */
 public class ApplicationRepository
 {
@@ -30,9 +28,7 @@ public class ApplicationRepository
 	
 	/**
 	 * Constructor for ApplicationRepository
-	 * Purpose: Initialize the applications collection
-	 * 
-	 * @return a new ApplicationRepository object with an empty applications collection
+	 * Purpose: Initialize the applications collection with an empty ArrayList
 	 */
 	public ApplicationRepository()
 	{
@@ -40,10 +36,11 @@ public class ApplicationRepository
 	}
 	
 	/**
-	 * Method: addApplications
-	 * Purpose: Retrieve the collection of applications from the repository
-	 * 
-	 * @return an ArrayList of ApplicationModel objects representing the applications in the repository
+	 * Method: addApplication
+	 * Purpose: Add a new application to the repository
+	 *
+	 * @param application the ApplicationModel object to be added to the repository
+	 * @return void
 	 */
 	public void addApplication(ApplicationModel application)
 	{
@@ -94,12 +91,12 @@ public class ApplicationRepository
 		ArrayList<ApplicationModel> searchResults = new ArrayList<>();
 		
 		// Search through the applications collection 
-		//and add any applications that match the search term to the search results
+		// and add any applications that match the search term to the search results
 		for (int i = 0; i < applications.size(); i++)
 		{
 		    ApplicationModel application = applications.get(i);
 
-		    if (application.getCompanyName().toLowerCase().contains(keyWord.toLowerCase()) ||
+		    if (application.getCompanyName().toLowerCase().contains(keyWord.toLowerCase()) || // toLowercase is used to make the search case insensitive
 		        application.getJobTitle().toLowerCase().contains(keyWord.toLowerCase()) ||
 		        application.getJobLocation().toLowerCase().contains(keyWord.toLowerCase()) ||
 		        application.getStatus().toLowerCase().contains(keyWord.toLowerCase()) ||

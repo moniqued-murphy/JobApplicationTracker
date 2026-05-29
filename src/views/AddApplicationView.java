@@ -7,7 +7,7 @@
  * Java, Java, Java: Object-Oriented Problem Solving
  * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
- * Version: 2026-05-11
+ * Version: 2026-05-28
  */
 package views;
 
@@ -31,8 +31,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import models.ApplicationModel;
-import repositories.ApplicationRepository;
-import services.FileService;
 
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -42,9 +40,8 @@ import java.awt.event.MouseEvent;
 
 /**
  * Purpose: The responsibility of AddApplicationView is ...
- *
- * AddApplicationView is-a ...
- * AddApplicationView is ...
+ * To create a form that allows users to input details about a new job application and save it to the repository
+ * 
  */
 public class AddApplicationView extends JFrame
 {
@@ -66,6 +63,12 @@ public class AddApplicationView extends JFrame
 	private JButton cancelButton;
 	private JPanel mainPanel;
 
+	/**
+	 * Constructor
+	 * Purpose: Create an instance of AddApplicationView and set up the form components and layout
+	 * 
+	 * @return void
+	 */
 	public AddApplicationView()
 	{
 
@@ -100,6 +103,7 @@ public class AddApplicationView extends JFrame
 		styleField(payField);
 		payField.setText("e.g. 5000.00");
 		payField.setForeground(Color.GRAY);
+		// Add focus listener to clear placeholder text when focused and restore it when focus is lost
 		payField.addFocusListener(new FocusAdapter()
 		{
 			@Override
@@ -123,6 +127,7 @@ public class AddApplicationView extends JFrame
 			}
 		});
 
+		// Add mouse listener to clear placeholder text when clicked
 		payField.addMouseListener(new MouseAdapter()
 		{
 			@Override
@@ -140,6 +145,7 @@ public class AddApplicationView extends JFrame
 		styleField(dateField);
 		dateField.setText("MM/DD/YY");
 		dateField.setForeground(Color.GRAY);
+		// Add focus listener to clear placeholder text when focused and restore it when focus is lost
 		dateField.addFocusListener(new FocusAdapter()
 		{
 			@Override
@@ -163,6 +169,7 @@ public class AddApplicationView extends JFrame
 			}
 		});
 
+		// Add mouse listener to clear placeholder text when clicked
 		dateField.addMouseListener(new MouseAdapter()
 		{
 			@Override
@@ -176,6 +183,7 @@ public class AddApplicationView extends JFrame
 			}
 		});
 
+		// Initialize error labels for pay and date fields, set their properties, and align them to the left
 		payErrorLabel = new JLabel(" ");
 		payErrorLabel.setForeground(Color.RED);
 		payErrorLabel.setFont(new Font("SansSerif", Font.PLAIN, 13));
@@ -186,6 +194,7 @@ public class AddApplicationView extends JFrame
 		dateErrorLabel.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		dateErrorLabel.setAlignmentX(LEFT_ALIGNMENT);
 
+		// Initialize the status and job type combo boxes, set their properties, and add options for each
 		statusBox = new JComboBox<String>();
 		statusBox.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		statusBox.setPreferredSize(new Dimension(400, 45));
@@ -208,6 +217,7 @@ public class AddApplicationView extends JFrame
 		jobTypeBox.addItem("Internship: Full-Time");
 		jobTypeBox.addItem("Internship: Part-Time");
 
+		// Initialize the notes text area, set its properties, and configure it to wrap lines and words appropriately
 		notesArea = new JTextArea(8, 20);
 		notesArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
@@ -218,6 +228,7 @@ public class AddApplicationView extends JFrame
 		notesArea.setLineWrap(true);
 		notesArea.setWrapStyleWord(true);
 
+		// Initialize the save and cancel buttons, set their properties, and configure their appearance
 		saveButton = new JButton("Save");
 		saveButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		saveButton.setBackground(new Color(210, 230, 255)); // 210 230 255 , 220 210 245
@@ -314,6 +325,7 @@ public class AddApplicationView extends JFrame
 
 		add(mainPanel, BorderLayout.CENTER);
 
+		// Bottom Panel
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new BorderLayout());
 		bottomPanel.setBackground(backgroundColor);
@@ -386,6 +398,7 @@ public class AddApplicationView extends JFrame
 	
 	/**
 	 * Method: Get Company Name
+	 * Purpose: Get the company name from the company name text field
 	 * 
 	 * @return Company Name 
 	 */
@@ -396,6 +409,7 @@ public class AddApplicationView extends JFrame
 	
 	/**
 	 * Method: Get Job Title
+	 * Purpose: Get the job title from the job title text field
 	 * 
 	 * @return Job Title 
 	 */
@@ -494,6 +508,13 @@ public class AddApplicationView extends JFrame
 		return cancelButton;
 	}
 	
+	/**
+	 * Method: Populate Form
+	 * Purpose: Populate the form fields with data from an existing application, allowing for editing
+	 * 
+	 * @param application the application whose data will be used to populate the form fields
+	 * @return void
+	 */
 	public void populate(ApplicationModel application)
 	{
 		companyNameField.setText(application.getCompanyName());

@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
 *
-* Version: 2026-05-08
+* Version: 2026-05-28
 */
 package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,8 +20,6 @@ import services.FileService;
  * Purpose: The responsibility of TestFileService is to test saving
  * and loading ApplicationModel objects to and from a file.
  *
- * TestFileService is-a Object
- * TestFileService is a JUnit 5 test class
  */
 public class TestFileService
  {
@@ -29,11 +27,11 @@ public class TestFileService
      @Test
      public void testSaveApplications()
      {
-         // set up a file name and a FileService
+         // Set up a file name and a FileService
          String fileName = "test_applications.txt";
          FileService fileService = new FileService(fileName);
 
-         // create one application to save
+         // Create one application to save
          ApplicationModel app = new ApplicationModel(
                  "Mesa College",
                  "Intern",
@@ -45,24 +43,24 @@ public class TestFileService
                  "Internship"
                  );
 
-         // put the application in a list
+         // Put the application in a list
          java.util.ArrayList<ApplicationModel> appList = new java.util.ArrayList<>();
          appList.add(app);
 
-         // save the list to the file
+         // Save the list to the file
          fileService.saveApplications(appList);
 
-         // the file should now exist on disk
+         // The file should now exist on disk
          assertEquals(true, new java.io.File(fileName).exists());
 
-         // delete the file after the test
+         // Delete the file after the test
          new java.io.File(fileName).delete();
      }
 
      @Test
      public void testLoadApplications()
      {
-         //  set up a file name and a FileService
+         // Set up a file name and a FileService
          String fileName = "test_applications.txt";
          FileService fileService = new FileService(fileName);
 
@@ -82,28 +80,28 @@ public class TestFileService
          appList.add(app);
          fileService.saveApplications(appList);
 
-         // load the applications back from the file
+         // Load the applications back from the file
          java.util.ArrayList<ApplicationModel> loaded = fileService.loadApplications();
 
-         // the loaded list should have 1 entry with the correct company name
+         // The loaded list should have 1 entry with the correct company name
          assertEquals(1, loaded.size());
          assertEquals("Mesa College", loaded.get(0).getCompanyName());
 
-         // delete the file after the test
+         // Delete the file after the test
          new java.io.File(fileName).delete();
      }
 
      @Test
      public void testLoadApplicationsFileNotFound()
      {
-         // point to a file that does not exist
+         // Point to a file that does not exist
          String fileName = "nonexistent_file.txt";
          FileService fileService = new FileService(fileName);
 
-         // try to load from the missing file
+         // Try to load from the missing file
          java.util.ArrayList<ApplicationModel> loaded = fileService.loadApplications();
 
-         // the result should be an empty list 
+         // The result should be an empty list 
          assertEquals(0, loaded.size());
      }
 

@@ -8,7 +8,7 @@
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 * 
 *
-* Version: 2026-05-13
+* Version: 2026-05-28
 */
 package tests;
 
@@ -18,11 +18,9 @@ import views.ApplicationsView;
 
 /**
  * Purpose: The responsibility of testApplicationsView is ...
- * To test the ApplicationsView class by creating 
- * an instance of ApplicationsView 
- *
- * testApplicationsView is-a ...
- * testApplicationsView is ...
+ * To test the ApplicationsView class by creating an instance of ApplicationsView,
+ * and ApplicationRepository, and then ApplicationsController with the view and repository.
+ * 
  */
 public class testApplicationsView
 {

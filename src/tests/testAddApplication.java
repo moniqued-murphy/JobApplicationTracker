@@ -1,21 +1,13 @@
 /**
 * Lead Author(s):
-* @author monique; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
-*
-* Other Contributors:
-* Full name; student ID or contact information if not in class
-* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
-*
+* @author Monique Murphy; 0005396987;
+* 
 * References:
 * Morelli, R., & Walde, R. (2016).
 * Java, Java, Java: Object-Oriented Problem Solving
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
-* <<Add more references here>>
-*
-* Version: 2026-05-13
+* Version: 2026-05-28
 */
 package tests;
 
@@ -23,9 +15,8 @@ import views.AddApplicationView;
 
 /**
  * Purpose: The responsibility of testAddApplication is ...
- *
- * testAddApplication is-a ...
- * testAddApplication is ...
+ * To test the AddApplicationView class by creating an instance of AddApplicationView
+ * 
  */
 public class testAddApplication
 {
