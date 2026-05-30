@@ -50,7 +50,12 @@ public class DashboardView extends JFrame
 	private JButton statisticsButton;
 	private JButton dashboardButton;
 
-	// Constructor
+	/**
+	 * Constructor
+	 * Purpose: Create an instance of DashboardView and build the layout
+	 *
+	 * @return void
+	 */
 	public DashboardView()
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

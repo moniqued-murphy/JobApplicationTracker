@@ -62,8 +62,9 @@ public class ApplicationRepository
 	/**
 	 * Method: editApplication
 	 * Purpose: Edit an existing application in the repository
-	 * 
-	 * @param oldApplication the ApplicationModel object to be edited
+	 *
+	 * @param oldApplication the ApplicationModel object to be replaced
+	 * @param newApplication the ApplicationModel object to replace it with
 	 * @return void
 	 */
 	public void editApplication(ApplicationModel oldApplication, ApplicationModel newApplication)

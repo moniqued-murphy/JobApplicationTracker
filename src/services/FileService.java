@@ -84,9 +84,8 @@ public class FileService
 	/**
 	 * Method: loadApplications
 	 * Purpose: Load the collection of applications from a text file
-	 * 
-	 * @param appList an ArrayList of ApplicationModel objects representing the applications to be loaded from the file
-	 * @return void
+	 *
+	 * @return an ArrayList of ApplicationModel objects loaded from the file
 	 */
 	public ArrayList<ApplicationModel> loadApplications()
 	{
