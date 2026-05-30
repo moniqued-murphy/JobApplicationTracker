@@ -20,6 +20,7 @@ import repositories.ApplicationRepository;
 import views.AddApplicationView;
 import views.ApplicationsView;
 import views.DashboardView;
+import views.StatisticsView;
 import services.FileService;
 import services.StatisticsService;
 
@@ -57,6 +58,12 @@ public class DashboardController
 		
 		// Show the stats and recent applications on the dashboard
 		refreshDashboard();
+
+		// Add action listener for the Statistics button
+		dashboardView.getStatisticsButton().addActionListener(e ->
+		{
+			new StatisticsView();
+		});
 
 		// Add action listener for the Applications button
 		dashboardView.getApplicationsButton().addActionListener(e ->
