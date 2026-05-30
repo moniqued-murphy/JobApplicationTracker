@@ -2,3 +2,5 @@ Google |Google Search |San Diego |12.12|12/23/23|Applied|Test application #1|Job
 Baskin Robbins |Ice Cream Trester|Remote |2000.0|05/24/23|Offer|Test Application #2  Baskin Robbins has 31 flavors of ice cream |Internship: Full-Time
 Papa Johns|Pizza Spinner |La Jolla |100000.0|02/21/28|Rejected|Application Test #3     Guess i cant spin the pizza |Internship: Full-Time
 Apple|Iphone |LA|0.0|11/11/23|Interview|Test application #4|Internship: Part-Time
+Test |test a|San Digpo |45555.0|04/25/23|Rejected|test application 5 |Internship: Part-Time
+cake |ice cream |Remote |400000.0|12/12/12|Interview|Test application 6|Job: Full-Time

@@ -346,7 +346,8 @@ public class DashboardView extends JFrame
 
 		int startIndex = Math.max(0, apps.size() - 5);
 
-		for (int i = startIndex; i < apps.size(); i++)
+		// Loop backwards so the most recently added application appears at the top
+		for (int i = apps.size() - 1; i >= startIndex; i--)
 		{
 			ApplicationModel app = apps.get(i);
 
